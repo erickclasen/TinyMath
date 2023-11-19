@@ -36,9 +36,9 @@ so far
 - generate-math-dataset.py - Can generate math datasets for any range of numbers and number of random examples.
 
 ## Background
-Got the idea for this from working with Andrej Karpathy's llama2.c repository code that was used to train models based TinyStories on and then reading TinyStories: How Small Can Language Models Be and Still Speak Coherent English?
+Got the idea for this from working with Andrej Karpathy's llama2.c repository code ( https://github.com/karpathy/llama2.c ) that was used to train models based TinyStories on and then reading TinyStories: How Small Can Language Models Be and Still Speak Coherent English?
 https://arxiv.org/abs/2305.07759
-Plus, when I was running through the nn-zero-to-hero video series. I saw the question about creating a calculator and that firmed up moving forward on this....
+Plus, when I was running through the nn-zero-to-hero video series ( https://github.com/karpathy/nn-zero-to-hero ). I saw the exercise question in the comments about creating a calculator and that just helped to push forward on this....
 
 From https://github.com/erickclasen/makemore/blob/master/verbose-readme.pdf
 ...
