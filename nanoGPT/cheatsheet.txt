@@ -1,0 +1,4 @@
+2046  python3 data/tinymath/prepare.py 
+ 2069  python3 train.py config/train_tinymath.py 
+ 2076  python3 sample.py --out_dir=out-tinymath/ --device=cpu
+ 2083  python3 grading-math.py 
