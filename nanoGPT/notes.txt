@@ -1,0 +1,9 @@
+This directory contains work on making smaller math models using nanoGPT which was created by Andrej Karpathy
+The idea is to train a model using the training train.py and then allow it to generate samples. Then the samples can be scored using self-grading.py on
+the expressions.txt file where all of the output samples can be copied to or piped to.
+
+Also there is a 'calculator', math-sample.py is a modification of the standard sample.py to take an optional prompt and return a one line output of the 
+expression with the 'answer', some are right, some are not.
+
+I put this under the main root TinyMath as I was not sure if it was even possible to fork nanoGPT into a sub directory. If I was to do this repo over, I 
+would have forked nanoGPT and just added to it for the math examples.
