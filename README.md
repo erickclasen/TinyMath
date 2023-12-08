@@ -107,6 +107,10 @@ Prompt: 90 + 4
 In the nanoGPT directory is a set of files that allows training and inference on smaller
 scratch trained GPT models. nanoGPT code originates in Andrej Karpathy's nanoGPT repo at https://github.com/karpathy/nanoGPT
 
+Loss at 5000 iters
+- step 5000: train loss 0.6861, val loss 0.6933
+
+
 The dataset is under the data directory and has the dataset of math expression examples from 0-89 of add,subtract,multipy and divide
 to 2 decimal places. The data is prepared into train.bin and val.bin as a character level model as there are only 18 characters and there
 are no 'words' to speak of, keep it char level makes sense.
@@ -142,6 +146,29 @@ dropout = 0.2...
 found vocab_size = 18 (inside data/tinymath/meta.pkl)
 Initializing a new model from scratch
 number of parameters: 10.63M...
+
+...
+step 0: train loss 2.9920, val loss 2.9929
+iter 0: loss 2.9804, time 2429347.63ms, mfu -100.00%
+iter 10: loss 2.0419, time 16193.55ms, mfu 0.02%
+iter 20: loss 1.8771, time 15952.87ms, mfu 0.02%
+iter 30: loss 1.8551, time 16422.38ms, mfu 0.02%
+iter 40: loss 1.8314, time 16159.03ms, mfu 0.02%
+iter 50: loss 1.8065, time 16221.15ms, mfu 0.02%
+iter 60: loss 1.7635, time 16225.26ms, mfu 0.02%
+iter 70: loss 1.6543, time 16284.06ms, mfu 0.02%
+...
+iter 4940: loss 0.7058, time 16458.34ms, mfu 0.02%
+iter 4950: loss 0.7026, time 16458.35ms, mfu 0.02%
+iter 4960: loss 0.6981, time 16408.22ms, mfu 0.02%
+iter 4970: loss 0.7002, time 16512.51ms, mfu 0.02%
+iter 4980: loss 0.7000, time 16505.15ms, mfu 0.02%
+iter 4990: loss 0.7015, time 16465.89ms, mfu 0.02%
+step 5000: train loss 0.6861, val loss 0.6933
+saving checkpoint to out-tinymath
+iter 5000: loss 0.7052, time 2249072.31ms, mfu 0.02%
+
+
 
 ```
 
