@@ -63,7 +63,7 @@ There was some initial warmup with the makemore code and this work is detail in 
 https://github.com/erickclasen/makemore/blob/master/verbose-readme.pdf
 
 
-## Examples
+## distil-GPT2 Examples
 So far using distil-GPT2.
 - Some that work.
 - Some that will fail and then work.
@@ -103,9 +103,118 @@ Prompt: 90 + 4
 90 + 4 = 84.00
 
 ```
-## TBD
-More work to come on smaller models
+## TinyMath nanoGPT 'baby' GPT, half the layers,heads and embeds as GPT
+In the nanoGPT directory is a set of files that allows training and inference on smaller
+scratch trained GPT models. nanoGPT code originates in Andrej Karpathy's nanoGPT repo at https://github.com/karpathy/nanoGPT
+
+The dataset is under the data directory and has the dataset of math expression examples from 0-89 of add,subtract,multipy and divide
+to 2 decimal places. The data is prepared into train.bin and val.bin as a character level model as there are only 18 characters and there
+are no 'words' to speak of, keep it char level makes sense.
+
+config dir contains the imported configuration files that set up the correct parameters for the training and inference.
+
+### Special files
+math-sample.py - Beyond the normal code found in the regular nanoGPT are a special sampling file that creates a calcultor that will allow a user prompt which is optional and will output a one line expression as the 'answer'. It also contains a timer to measure how long the calculation takes.
+
+grading-math.py - A file that does simple grading where it posts the correct answer next to the answer 'calculated' by GPT, it uses a file called expressions.txt which is created by piping or copy/pasting the output from sample.py to the file.
+
+self-grading.py - Same as grading-math.py but reports correct and incorrect answers with the correct answers noted. Prints a score at the end of the run.
+It is a bit more fussy when it runs and will fail if it sees malformed expressions in expressions.txt. Hand cleaning is require for now.
+
+### Examples
+
+### How to train
+```
+python3 train.py config/train_tinymath.py --device=cpu
+
+```
+### Snippet of output showing the params and model size
+```
+...block_size = 256 # context of up to 256 previous characters
+
+# baby GPT model :)
+n_layer = 6
+n_head = 6
+n_embd = 384
+dropout = 0.2...
+
+...tokens per iteration will be: 16,384
+found vocab_size = 18 (inside data/tinymath/meta.pkl)
+Initializing a new model from scratch
+number of parameters: 10.63M...
+
+```
 
 
+### Normal nanoGPT sample.py running output
+```
+python3 sample.py --out_dir=out-tinymath --device=cpu
+```
+
+tail of output
+```
+55 / 35 = 1.57
+16 / 46 = 0.36
+63 / 3 = 21.00
+74 * 53 = 3902.00
+81 - 6 = 75.00
+33 - 18 = 15.00
+55 * 64 = 3560.00
+71 * 49 = 3479.00
+36 - 15 = 21
+---------------
+
+```
+### A GPT calculator
+```
+python3 math-sample.py --out_dir=out-tinymath --device=cpu
+Overriding: out_dir = out-tinymath
+Overriding: device = cpu
+Enter your prompt (hit Enter to use the default prompt): 12 + 24 =
+number of parameters: 10.63M
+Loading meta from data/tinymath/meta.pkl...
+12 + 24 = 36.00
 
 
+Execution time: 0.24 seconds
+
+```
+### Simple grading, no score, no indication of right/wrong
+```
+python3 grading-math.py
+```
+```
+88 + 32 = 120.00 = 120
+48 + 24 = 72.00 = 72
+31 * 76 = 2356.00 = 2356
+69 * 50 = 3450.00 = 3450
+19 - 52 = -33.00 = -33
+4 / 18 = 0.22 = 0.22
+74 + 22 = 96.00 = 96
+85 / 68 = 1.24 = 1.25
+8 / 59 = 0.13 = 0.14
+74 / 76 = 0.9 = 0.97
+
+```
+### Grading the samples automatically
+```
+python3 self-grading.py
+```
+```
+48 + 24 = 72   Correct
+31 * 76 = 2356   Correct
+69 * 50 = 3450   Correct
+19 - 52 = -33   Correct
+4 / 18 = 0.22   Correct
+74 + 22 = 96   Correct
+85 / 68 = 1.25   Incorrect, model predicted 1.24
+8 / 59 = 0.14   Incorrect, model predicted 0.13
+74 / 76 = 0.97   Incorrect, model predicted 0.9
+
+Score: 95/123 (77.24%)
+
+```
+
+## TBD 
+- Smaller and Larger Models in line with TinyStories examples or something similar.
+- Smaller dataset 0-5 ?
