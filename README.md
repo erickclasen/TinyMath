@@ -8,7 +8,11 @@ model can add 1 + 1 and so on up to 10 or so? How about one so small it gets a p
 To start a reasonable baseline is established using the fairly small already distil-GPT2 model. Then the idea is to move down from that size and see just how small the model can get
 before it is a total failure.
 
-## Baseline using Distil-GPT-2
+As of now...
+- There is a baseline test of a model trained using transfer learning on distil-GPT-2. The files are in the base directory. #1
+- There is a baby GPT with half the layers,heads and embeds as GPT-1. The files are under nanoGPT. #2
+
+##  1. Baseline using Distil-GPT-2
 The first files uploaded here are for training distil-GPT2 with a math problem dataset ( math_dataset_90.txt ) that uses examples covering addition, subraction, multiplication and division for numbers from 0 to 89.
 Exluding any division by zero.
 This dataset intentionally is missing 90-99 to have this as a holdout region to test if the model can infer how to do math with these numbers. As in, has it learned enough to 'do math'
@@ -106,7 +110,7 @@ Prompt: 90 + 4
 90 + 4 = 84.00
 
 ```
-## TinyMath nanoGPT 'baby' GPT, half the layers,heads and embeds as GPT
+## 2. TinyMath nanoGPT 'baby' GPT, half the layers,heads and embeds as GPT
 In the nanoGPT directory is a set of files that allows training and inference on smaller
 scratch trained GPT models. nanoGPT code originates from Andrej Karpathy's nanoGPT repo at https://github.com/karpathy/nanoGPT
 
@@ -120,10 +124,10 @@ are no 'words' to speak of, keep it char level makes sense.
 
 config dir contains the imported configuration file ( train_tinymath.py ) that set up the correct parameters for the training and inference.
 
-### Files add for the TinyMath project
+### Files added beyond nanoGPT code for the TinyMath project
 math-sample.py - Beyond the normal code found in the regular nanoGPT are a special sampling file that creates a calcultor that will allow a user prompt which is optional and will output a one line expression as the 'answer'. It also contains a timer to measure how long the calculation takes.
 
-grading-math.py - A file that does simple grading where it posts the correct answer next to the answer 'calculated' by GPT, it uses a file called expressions.txt which is created by piping or copy/pasting the output from sample.py to the file.
+grading-math.py - Prototype grading code for grading the samples. A file that does simple grading where it posts the correct answer next to the answer 'calculated' by GPT, it uses a file called expressions.txt which is created by piping or copy/pasting the output from sample.py to the file.
 
 self-grading.py - Same as grading-math.py but reports correct and incorrect answers with the correct answers noted. Prints a score at the end of the run.
 It is a bit more fussy when it runs and will fail if it sees malformed expressions in expressions.txt. Hand cleaning is require for now.
