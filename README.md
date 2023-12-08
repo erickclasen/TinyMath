@@ -105,7 +105,7 @@ Prompt: 90 + 4
 ```
 ## TinyMath nanoGPT 'baby' GPT, half the layers,heads and embeds as GPT
 In the nanoGPT directory is a set of files that allows training and inference on smaller
-scratch trained GPT models. nanoGPT code originates in Andrej Karpathy's nanoGPT repo at https://github.com/karpathy/nanoGPT
+scratch trained GPT models. nanoGPT code originates from Andrej Karpathy's nanoGPT repo at https://github.com/karpathy/nanoGPT
 
 Loss at 5000 iters
 - step 5000: train loss 0.6861, val loss 0.6933
@@ -115,9 +115,9 @@ The dataset is under the data directory and has the dataset of math expression e
 to 2 decimal places. The data is prepared into train.bin and val.bin as a character level model as there are only 18 characters and there
 are no 'words' to speak of, keep it char level makes sense.
 
-config dir contains the imported configuration files that set up the correct parameters for the training and inference.
+config dir contains the imported configuration file ( train_tinymath.py ) that set up the correct parameters for the training and inference.
 
-### Special files
+### Files add for the TinyMath project
 math-sample.py - Beyond the normal code found in the regular nanoGPT are a special sampling file that creates a calcultor that will allow a user prompt which is optional and will output a one line expression as the 'answer'. It also contains a timer to measure how long the calculation takes.
 
 grading-math.py - A file that does simple grading where it posts the correct answer next to the answer 'calculated' by GPT, it uses a file called expressions.txt which is created by piping or copy/pasting the output from sample.py to the file.
@@ -125,7 +125,7 @@ grading-math.py - A file that does simple grading where it posts the correct ans
 self-grading.py - Same as grading-math.py but reports correct and incorrect answers with the correct answers noted. Prints a score at the end of the run.
 It is a bit more fussy when it runs and will fail if it sees malformed expressions in expressions.txt. Hand cleaning is require for now.
 
-### Examples
+## Examples
 
 ### How to train
 ```
@@ -244,4 +244,5 @@ Score: 95/123 (77.24%)
 
 ## TBD 
 - Smaller and Larger Models in line with TinyStories examples or something similar.
+- Review optimization of hyperparameters with a ceiling oon model size from makemore fork ( https://github.com/erickclasen/makemore )
 - Smaller dataset 0-5 ?
