@@ -1,0 +1,3 @@
+This directory contains the datasets and in their directories prepare.py which creates the train.bin and val.bin
+  for TinyMath to train on.
+  Note see Andrej Karpathy's nanoGPT repo for more examples.
