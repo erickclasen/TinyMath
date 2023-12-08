@@ -1,0 +1,5 @@
+Directory for the Tinymath 0-89 add, subtract, multiply and divide set of expressions.
+The dataset is a random file of examples of math expressions.
+90-99 are kept out as a test set.
+
+As this model only deals with 0123456789+-*/= and space it is a character level model, no need to overcomplicate it.
