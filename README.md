@@ -47,7 +47,8 @@ Plus, when I was running through the nn-zero-to-hero video series ( https://gith
 From https://github.com/erickclasen/makemore/blob/master/verbose-readme.pdf
 
 This one will open right in browser...
-http://erick.heart-centered-living.org/wp-content/uploads/2023/11/verbose-readme.pdf
+
+http://erick.heart-centered-living.org/wp-content/uploads/2024/12/verbose-readme.pdf
 ...
 ```
 Could mod inference code to be a ‘calculator’. Take in 0-9 + - / * from input and then
